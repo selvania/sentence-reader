@@ -235,7 +235,30 @@ def add_translation():
               continue
         else:
               break
-              
+
+def add_section(wrd):
+    if wrd in word_dict:
+        word_dict[wrd] += 1
+    else:
+        word_dict[wrd] = 1
+
+def split_text(txt_block):
+    txt = txt_block
+    cleanTxt = ""
+    spcial = ["!", ".", ",", ";", "?", ":", "1", "2", "3",
+              "4", "5", "6", "7", "8", "9", "0", "(", ")",
+              "~", "`", "@", "#", "$", "%", "^", "&", "*",
+              "-", "_", "{", "}", "[", "]", "<", ">", "/",
+              "|", "\\"]
+    for x in txt:
+        if x in spcial:
+            continue
+        else:
+            cleanTxt += x
+    txt = cleanTxt.split()
+    #split text
+    for x in txt:
+        add_word(x.lower())
 def add_word_data():
     with open('word_usage_data_eng.txt','r') as outfile2:
         word_dict = json.load(outfile2)
