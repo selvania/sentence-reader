@@ -1,9 +1,7 @@
 #Database control file.
-#Version 2.2
-#Last updated February 4, 2020
+#Last updated December 6, 2020
 #Last updates include adding adjectives.
-#To do: add print options, finish abnormal verbs
-#add translation currently commented out
+#To do: add print options
 
 import json
 
@@ -47,10 +45,6 @@ def add_noun():
 
 def noun_loop():
     add_noun()
-
-#add irregular verb
-def add_verb_irregular():
-    return None
     
 #need to add past tense area for verb data
 def add_verb():
@@ -216,58 +210,32 @@ def add_particle():
     word = input(">> ")
 
 def add_translation():
-    return None
-#    translation_list = data["translatioon"][0]
- #   print("Which word would you like to translate?")
-  #  to_translate = input(">> ")
-   # if to_translate in data["translation"]:
-    #    print("Your word already exists.")
-     #   print(data["translation"][word])
-   # else:
-    #    print("You are translating a new word.")
-    #print("Which language would you like to add?")
-    #lang_choice = input(">> ")
-    #print("What is the translation?")
-    #trans = input(">> ")
-    #data["translation"][to_translate].append([lang_choice : trans])
-    #while True:
-     #   print("Alright, would you like to add another language?
-      #  anstranscont = input(">> ")
-       # if anstranscount.lower() == "yes":
-        #      print("Which language would you like to add?")
-         #     lang_choice = input(">> ")
-          #    print("What is the translation?")
-           #   trans = input(">> ")
-            #  data["translation"][to_translate].append([lang_choice : trans])
-             # continue
-        #else:
-         #     break
-
-#word data additions
-def add_section(wrd):
-    if wrd in word_dict:
-        word_dict[wrd] += 1
+    translation_list = data["translatioon"][0]
+    print("Which word would you like to translate?")
+    to_translate = input(">> ")
+    if to_translate in data["translation"]:
+        print("Your word already exists.")
+        print(data["translation"][word])
     else:
-        word_dict[wrd] = 1
-
-def split_text(txt_block):
-    txt = txt_block
-    cleanTxt = ""
-    spcial = ["!", ".", ",", ";", "?", ":", "1", "2", "3",
-              "4", "5", "6", "7", "8", "9", "0", "(", ")",
-              "~", "`", "@", "#", "$", "%", "^", "&", "*",
-              "-", "_", "{", "}", "[", "]", "<", ">", "/",
-              "|", "\\"]
-    for x in txt:
-        if x in spcial:
-            continue
+        print("You are translating a new word.")
+    print("Which language would you like to add?")
+    lang_choice = input(">> ")
+    print("What is the translation?")
+    trans = input(">> ")
+    data["translation"][to_translate].append("[" + lang_choice + ":" + trans + "]" )
+    while True:
+        print("Alright, would you like to add another language?")
+        anstranscont = input(">> ")
+        if anstranscount.lower() == "yes":
+              print("Which language would you like to add?")
+              lang_choice = input(">> ")
+              print("What is the translation?")
+              trans = input(">> ")
+              data["translation"][to_translate].append("[" + lang_choice + ":" + trans + "]")
+              continue
         else:
-            cleanTxt += x
-    txt = cleanTxt.split()
-    #split text
-    for x in txt:
-        add_word(x.lower())
-
+              break
+              
 def add_word_data():
     with open('word_usage_data_eng.txt','r') as outfile2:
         word_dict = json.load(outfile2)
@@ -359,6 +327,7 @@ while True:
         print("  print")
         print("  save")
         print("  translate")
+        print("  add word data")
         print("  end")
         continue
             
